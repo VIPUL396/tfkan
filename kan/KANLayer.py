@@ -158,8 +158,8 @@ class KANLayer(nn.Module):
         
         postspline = y.clone().permute(0,2,1)
             
-        y = self.scale_base[None,:,:] * base[:,:,None] + self.scale_sp[None,:,:] * y
-        y = self.mask[None,:,:] * y
+        y = self.scale_base[None,:,:] * (base[:,:,None] + y)
+        # y = self.mask[None,:,:] * y
         
         postacts = y.clone().permute(0,2,1)
             
